@@ -1,0 +1,29 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+{% block main-content %}
+
+<!--<a href="{% url 'home' %}">Home</a> /-->
+<!--<a href="{% url 'login' %}">Login</a>-->
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-4">
+            <h2>Sign up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}<br/>
+                    {{ field }}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary mt-4" value="Sign Up">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock main-content %}
